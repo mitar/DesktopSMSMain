@@ -4,8 +4,6 @@
 package fr.galize.desktopsms.ui;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
@@ -39,13 +37,7 @@ final class SendSMS extends AbstractAction {
 				String number = conversation.getContact().getNumber();
 				String body = text;
 				long id=0;
-				try {
-					id = Communication.getInstance().sendSMS(number, body);
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				id = Communication.getInstance().sendSMS(number, body);
 				if (id>0)
 					SMSSender.getInstance().register(number,body,conversation,id);
 				else
@@ -54,7 +46,7 @@ final class SendSMS extends AbstractAction {
 					field.setText(text);
 				}
 
-			}},"SendSMS").start();;
+			}},"SendSMS").start();
 
 	}
 

@@ -226,7 +226,7 @@ public class Communication {
 			}});
 	}
 
-	public long sendSMS(final String number,final String body) throws UnsupportedEncodingException, IOException
+	public long sendSMS(final String number,final String body)
 	{
 		final long l= System.currentTimeMillis();
 		tpe.submit(new Runnable(){
@@ -245,6 +245,22 @@ public class Communication {
 				}
 			}});
 		return l;
+	}
+	
+	public void makeCall(final String number)
+	{
+		tpe.submit(new Runnable(){
+
+			public void run() {
+				try {
+					_out.writeInt(4);
+					sendString(number);
+					_out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+					closeSocket();
+				}
+			}});
 	}
 
 	public void setClosed(boolean b) {

@@ -41,6 +41,7 @@ public class ConversationPanel extends JPanel {
 		AbstractAction sendSMS = new SendSMS(c, "Send", field);
 		field.setAction(sendSMS);
 		JButton send = new JButton(sendSMS);
+		JButton call = new JButton(new MakeCall(c));
 		final ConversationListModel dataModel = new ConversationListModel(c);
 		final JList conv= new JList(dataModel);
 		dataModel.addListDataListener(new ListDataListener(){
@@ -82,9 +83,9 @@ public class ConversationPanel extends JPanel {
 		JScrollPane comp = new JScrollPane(conv);
 		comp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		comp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		add(comp, new GridBagConstraints(0,0,2,1,10.,10.,GridBagConstraints.WEST,GridBagConstraints.BOTH,new Insets(0,0,0,05),0,0));
+		add(comp, new GridBagConstraints(0,0,4,1,10.,10.,GridBagConstraints.WEST,GridBagConstraints.BOTH,new Insets(0,0,0,05),0,0));
 		add(field, new GridBagConstraints(0,1,1,1,1.,0.,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL,new Insets(0,0,0,05),0,0));
 		add(send, new GridBagConstraints(1,1,1,1,0.,0.,GridBagConstraints.WEST,GridBagConstraints.NONE,new Insets(0,0,0,05),0,0));
-
+		add(call, new GridBagConstraints(2,1,1,1,0.,0.,GridBagConstraints.WEST,GridBagConstraints.NONE,new Insets(0,0,0,05),0,0));
 	}
 }

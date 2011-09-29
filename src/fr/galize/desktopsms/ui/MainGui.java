@@ -21,23 +21,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -184,6 +168,9 @@ public class MainGui extends JFrame {
 		barre.add(new JButton(new RefreshHisto()));
 		barre.add(new JLabel(""));
 		barre.add(new JButton(new PreferenceSettings()));
+		JTextField numberField = new JTextField();
+		barre.add(numberField);
+		barre.add(new JButton(new MakeCall(numberField)));
 
 		// Liste des contacts
 		list.setCellRenderer(new ContactCellRenderer());
