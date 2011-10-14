@@ -21,6 +21,11 @@ final class SendSMS extends AbstractAction {
 	private JTextField field;
 	private static final long serialVersionUID = -6376296068167825254L;
 
+	SendSMS(JTextField field) {
+		super("Send SMS");
+		this.conversation = null;
+		this.field = field;
+	}
 
 	SendSMS(Conversation conversation, String name, JTextField field) {
 		super(name);
@@ -29,17 +34,31 @@ final class SendSMS extends AbstractAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		final String text = field.getText();
+		final String text;
+		final String number;
+		if (conversation == null) {
+			text = JOptionPane.showInputDialog(null, "Message", "Message", JOptionPane.PLAIN_MESSAGE);
+			if ((text == null) || (text.length() == 0)) {
+				return;
+			}
+			number = field.getText();
+		}
+		else {
+			text = field.getText();
+			number = conversation.getContact().getNumber();
+		}
 		field.setText("");
 		new Thread(new Runnable(){
 
 			public void run() {
-				String number = conversation.getContact().getNumber();
 				String body = text;
 				long id=0;
 				id = Communication.getInstance().sendSMS(number, body);
-				if (id>0)
-					SMSSender.getInstance().register(number,body,conversation,id);
+				if (id>0) {
+					if (conversation != null) {
+						SMSSender.getInstance().register(number,body,conversation,id);
+					}
+				}
 				else
 				{
 					JOptionPane.showMessageDialog(field, "Error while sending", "Sending error", JOptionPane.ERROR_MESSAGE);

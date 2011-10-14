@@ -163,7 +163,7 @@ public class MainGui extends JFrame {
 		statebarre.add(logbutton);
 
 		// Barre d'outils
-		JPanel barre= new JPanel(new GridLayout(1,4));
+		JPanel barre= new JPanel(new GridLayout(1,7));
 		barre.add(new JButton(new Connection()));
 		barre.add(new JButton(new RefreshHisto()));
 		barre.add(new JLabel(""));
@@ -171,6 +171,7 @@ public class MainGui extends JFrame {
 		JTextField numberField = new JTextField();
 		barre.add(numberField);
 		barre.add(new JButton(new MakeCall(numberField)));
+		barre.add(new JButton(new SendSMS(numberField)));
 
 		// Liste des contacts
 		list.setCellRenderer(new ContactCellRenderer());
@@ -230,7 +231,7 @@ public class MainGui extends JFrame {
 		JSplitPane split = new JSplitPane();
 		split.setLeftComponent(new JScrollPane(list));
 		split.setRightComponent(pane);
-		setSize(new Dimension(800, 600));
+		setSize(new Dimension(850, 600));
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
