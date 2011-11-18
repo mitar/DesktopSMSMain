@@ -179,7 +179,7 @@ public class MainGui extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if ((e.getClickCount()>1&&e.getButton()==MouseEvent.BUTTON1) && (list.getSelectedIndex() > 0))
+				if ((e.getClickCount()>1&&e.getButton()==MouseEvent.BUTTON1) && (list.getSelectedIndex() >= 0))
 				{
 					MainModel.getInstance().addConversation((Contact) contacts.getElementAt(list.getSelectedIndex()));
 				}
